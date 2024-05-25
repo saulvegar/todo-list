@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" [fullscreen]="true" class="ion-padding">
+  <h1>{{ todo?.title }}</h1>
+  <p>{{ todo?.description }}</p>
+  <p>{{ formatDate(todo?.createdAt) }}</p>
+  <p>{{ formatDate(todo?.updatedAt) }}</p>
+
+  <ion-button expand="full" (click)="completeTodo()">Complete</ion-button>
+</ion-content>

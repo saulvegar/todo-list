@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Todo List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-grid>
+    <ion-row class="ion-justify-content-between">
+      <ion-col size="6">
+        <h1>Tareas pendientes</h1>
+      </ion-col>
+      <ion-col size="6" class="ion-align-items-end">
+        <ion-button [routerLink]="['/create', 'create']">+ Crear</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list [inset]="true">
+    <ion-item-sliding *ngFor="let todo of todos">
+      <ion-item
+        detail="true"
+        color="{{ todo.completed ? 'success' : 'light'}}"
+        button
+        [routerLink]="['/detail', todo._id]"
+      >
+        <ion-label>
+          <h1>{{ todo.title }}</h1>
+          <p>{{ todo.description }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="deleteTodo(todo)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="primary" (click)="goToUpdate(todo)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="success" disabled="{{ todo.completed }}" (click)="completeTodo(todo)">
+          <ion-icon slot="icon-only" name="checkmark-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
